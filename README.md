@@ -2,74 +2,72 @@
 
 ## usersテーブル
 
-| Column                | Type   | Options  |
-| --------------------- | ------ | -------- |
-| last-name             | string | NOT NULL |
-| first-name            | string | NOT NULL |
-| last-name-kan         | string | NOT NULL |
-| first-name-kana       | string | NOT NULL |
-| nickname              | string | NOT NULL |
-| email                 | string | NOT NULL |
-| password              | string | NOT NULL |
-| password-confirmation | string | NOT NULL |
-| birth-date            | string | NOT NULL |
+| Column             | Type     | Options     |
+| ------------------ | -------- | ----------- |
+| last_name          | string   | null: false |
+| first_name         | string   | null: false |
+| last_name_kan      | string   | null: false |
+| first_name_kana    | string   | null: false |
+| nickname           | string   | null: false |
+| email              | string   | null: false |
+| encrypted_password | string   | null: false |
+| birth-date         | datetime | null: false |
 
 ### Association
 
 - has_many :items
-- has_many :comments
-- has_one :order
+- has_many :orders
+- has_many :addresses
 
 ## itemsテーブル
 
-| Column                   | Type       | Options  |
-| ------------------------ | ---------- | -------- |
-| item-image               | string     | NOT NULL |
-| item-name                | string     | NOT NULL |
-| item-info                | string     | NOT NULL |
-| item-category            | string     | NOT NULL |
-| item-sales-status        | string     | NOT NULL |
-| item-shipping-fee-status | integer    | NOT NULL |
-| item-prefecture          | string     | NOT NULL |
-| item-scheduled-delivery  | integer    | NOT NULL |
-| item-price               | integer    | NOT NULL |
-| user                     | references |          |
+| Column                   | Type       | Options           |
+| ------------------------ | ---------- | ----------------- |
+| item_image               | string     | null: false       |
+| item_name                | string     | null: false       |
+| item_info                | string     | null: false       |
+| item_category            | string     | null: false       |
+| item_sales_status        | string     | null: false       |
+| item_shipping_fee_status | integer    | null: false       |
+| item_prefecture          | string     | null: false       |
+| item_scheduled_delivery  | integer    | null: false       |
+| item_price               | integer    | null: false       |
+| user                     | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :comments
 - has_one :order
+- has_one :address
 
-## commentsテーブル
+## ordersテーブル
 
-| Column       | Type       | Options  |
-| ------------ | ---------- | -------- |
-| comment-text | text       | NOT NULL |
-| user         | references |          |
-| item         | references |          |
+| Column         | Type       | Options           |
+| -------------- | ---------- | ----------------- |
+| card_number    | integer    | null: false       |
+| card_exp-month | integer    | null: false       |
+| card_exp-year  | integer    | null: false       |
+| card_cvc       | integer    | null: false       |
+| user           | references | foreign_key: true |
+| item           | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
 
-## ordersテーブル
+## addressesテーブル
 
-| Column         | Type       | Options  |
-| -------------- | ---------- | -------- |
-| card-number    | integer    | NOT NULL |
-| card-exp-month | integer    | NOT NULL |
-| card-exp-year  | integer    | NOT NULL |
-| card-cvc       | integer    | NOT NULL |
-| postal-code    | integer    | NOT NULL |
-| prefecture     | string     | NOT NULL |
-| city           | string     | NOT NULL |
-| addresses      | string     | NOT NULL |
-| building       | string     |          |
-| phone-number   | integer    | NOT NULL |
-| user           | references |          |
-| item           | references |          |
+| Column          | Type       | Options           |
+| --------------- | ---------- | ------------------|
+| postal_code     | string     | null: false       |
+| prefecture      | string     | null: false       |
+| city            | string     | null: false       |
+| addresses       | string     | null: false       |
+| building        | string     |                   |
+| phone_number    | string     | null: false       |
+| user            | references | foreign_key: true |
+| item            | references | foreign_key: true |
 
 ### Association
 
