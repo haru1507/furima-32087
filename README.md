@@ -9,7 +9,7 @@
 | last_name_kana     | string   | null: false  |
 | first_name_kana    | string   | null: false  |
 | nickname           | string   | null: false  |
-| email              | string   | unique: true |
+| email              | string   | unique: true, null: false |
 | encrypted_password | string   | null: false  |
 | birth_date         | date     | null: false  |
 
@@ -48,7 +48,6 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :order
 
 ## addressesテーブル
 
