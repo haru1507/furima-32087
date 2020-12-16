@@ -103,7 +103,6 @@ RSpec.describe User, type: :model do
       it 'ユーザー本名（first_name_kana）のフリガナは、全角（カタカナ）でなければ登録できない' do
         @user.first_name_kana = 'a'
         @user.valid?
-        binding.pry
         expect(@user.errors.full_messages).to include "First name kana is invalid"
       end
       it 'ユーザー本名（last_name_kana）のフリガナは、全角（カタカナ）でなければ登録できない' do
