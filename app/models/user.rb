@@ -3,7 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-<<<<<<< Updated upstream
 
   validates :last_name, presence: true
   validates :first_name, presence: true
@@ -11,6 +10,4 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true
   validates :nickname, presence: true
   validates :birth_date, presence: true
-=======
->>>>>>> Stashed changes
 end
