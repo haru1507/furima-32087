@@ -2,11 +2,11 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
   has_one_attached :image
-  belongs_to :category_id
-  belongs_to :sales_status_id
-  belongs_to :shipping_fee_status_id
-  belongs_to :prefecture_id
-  belongs_to :scheduled_delivary_id
+  belongs_to :category
+  belongs_to :sales_status
+  belongs_to :shipping_fee_status
+  belongs_to :prefecture
+  belongs_to :scheduled_delivery
 
   with_options presence: true do
     validates :name
@@ -19,7 +19,7 @@ class Item < ApplicationRecord
     validates :sales_status_id
     validates :shipping_fee_status_id
     validates :prefecture_id
-    validates :scheduled_delivary_id
+    validates :scheduled_delivery_id
   end
 
 end
