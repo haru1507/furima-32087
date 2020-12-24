@@ -18,9 +18,8 @@ class User < ApplicationRecord
     end
   end
 
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX
 
   has_many :items
 end
-
