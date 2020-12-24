@@ -125,37 +125,38 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', new_item_path, class: "subtitle" %>
     <ul class='item-lists'>
+    <% if @items[0] != nil %>
       <% @items.each do |item| %>
-      <li class='list'>
-        <%= link_to "#" do %>
-          <div class='item-img-content'>
-              <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" %>
-        <% end %>
+        <li class='list'>
+          <%= link_to "#" do %>
+            <div class='item-img-content'>
+                <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" %>
+          <% end %>
 
-              <%# 商品が売れていればsold outを表示しましょう %>
-              <div class='sold-out'>
-                <span>Sold Out!!</span>
-              </div>
-              <%# //商品が売れていればsold outを表示しましょう %>
-
-          </div>
-          <div class='item-info'>
-              <h3 class='item-name'>
-                <%= item.name %>
-              </h3>
-              <div class='item-price'>
-                <span><%= item.price %>円<br><%= item.shipping_fee_status_id %></span>
-                <div class='star-btn'>
-                  <%= image_tag "star.png", class:"star-icon" %>
-                  <span class='star-count'>0</span>
+                <%# 商品が売れていればsold outを表示しましょう %>
+                <div class='sold-out'>
+                  <span>Sold Out!!</span>
                 </div>
-              </div>
-          </div>
-      </li>
+                <%# //商品が売れていればsold outを表示しましょう %>
+
+            </div>
+            <div class='item-info'>
+                <h3 class='item-name'>
+                  <%= item.name %>
+                </h3>
+                <div class='item-price'>
+                  <span><%= item.price %>円<br><%= item.shipping_fee_status_id %></span>
+                  <div class='star-btn'>
+                    <%= image_tag "star.png", class:"star-icon" %>
+                    <span class='star-count'>0</span>
+                  </div>
+                </div>
+            </div>
+        </li>
       <% end %>
 
       <%# 商品がない場合のダミー %>
-      <%# 商品がある場合は表示されないようにしましょう %>
+    <% else %>
       <li class='list'>
         <%= link_to '#' do %>
           <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -166,14 +167,14 @@
             <div class='item-price'>
               <span>99999999円<br>(税込み)</span>
               <div class='star-btn'>
-                <%= image_tag "star.png", class:"star-icon" %>
+                  <%= image_tag "star.png", class:"star-icon" %>
                 <span class='star-count'>0</span>
               </div>
             </div>
           </div>
         <% end %>
       </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
+    <% end %>
       <%# /商品がない場合のダミー %>
     </ul>
   </div>
