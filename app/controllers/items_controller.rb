@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def index
     @items = Item.order('created_at DESC')
@@ -22,8 +22,16 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  # ログアウト状態のユーザー => 編集不可。ログインページへ。 => authenticate_user!
+  # ログイン状態かつ出品者でないユーザー => 編集不可。トップページへ
+  # ログイン状態かつ出品者のユーザー => 編集可能
+
   def edit
     @item = Item.find(params[:id])
+    if user_signed_in? && current_user.id == @item.user_id
+    else
+      redirect_to root_path
+    end
   end
 
   def update
