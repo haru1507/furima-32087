@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
   # ログイン状態かつ出品者のユーザー => 編集可能
 
   def edit
-    if user_signed_in? && current_user.id == @item.user_id
+    if current_user.id == @item.user_id
     else
       redirect_to root_path
     end
