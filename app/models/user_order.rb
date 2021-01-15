@@ -7,7 +7,14 @@ class UserOrder
     validates :prefecture_id
     validates :city
     validates :addresses
-    validates :phone_number, length: { maximum: 11 }
+    validates :phone_number,  numericality: true
+    validates :phone_number,  length: { maximum: 11 }
+  end
+
+
+
+  with_options numericality: { other_than: 1 } do
+    validates :prefecture_id
   end
 
   def save
