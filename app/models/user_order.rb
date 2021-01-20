@@ -1,6 +1,6 @@
 class UserOrder
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :order_id
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :order_id, :token
 
   with_options presence: true do
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
@@ -9,6 +9,7 @@ class UserOrder
     validates :addresses
     validates :phone_number,  numericality: true
     validates :phone_number,  length: { maximum: 11 }
+    validates :token
   end
 
 
