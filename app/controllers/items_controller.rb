@@ -22,13 +22,8 @@ class ItemsController < ApplicationController
   def show
   end
 
-  # ログアウト状態のユーザー => 編集不可。ログインページへ。 => authenticate_user!
-  # ログイン状態かつ出品者でないユーザー => 編集不可。トップページへ
-  # ログイン状態かつ出品者のユーザー => 編集可能
-
   def edit
-    if current_user.id == @item.user_id
-    else
+    if current_user.id == @item.user_id || @item.order != nil
       redirect_to root_path
     end
   end
