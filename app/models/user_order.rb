@@ -10,6 +10,8 @@ class UserOrder
     validates :phone_number,  numericality: true
     validates :phone_number,  length: { maximum: 11 }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   with_options numericality: { other_than: 1 } do

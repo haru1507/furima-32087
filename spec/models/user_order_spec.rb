@@ -2,11 +2,18 @@ require 'rails_helper'
 
 RSpec.describe UserOrder, type: :model do
   before do
-    @user_order = FactoryBot.build(:user_order)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @user_order = FactoryBot.build(:user_order, user_id: user.id, item_id: item.id)
+    sleep 0.1
   end
 
   context '商品購入がうまくいくとき' do
     it '全ての値が正しく入力されていれば保存できる' do
+      expect(@user_order).to be_valid
+    end
+    it '建物名が抜けていても保存できる' do
+      @user_order.building = ''
       expect(@user_order).to be_valid
     end
   end
